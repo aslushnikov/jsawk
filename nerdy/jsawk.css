@@ -12,6 +12,11 @@ body {
     white-space: pre;
 }
 
+#input .CodeMirror-scroll {
+    overflow: auto;
+    height: 200px;
+}
+
 #editor-header {
     margin: 3px;
     margin-bottom: 0px;

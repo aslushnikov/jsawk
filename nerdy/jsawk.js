@@ -1,4 +1,4 @@
-function runScript(funBody) {
+function runScript(funBody, txt) {
     var output = [];
     var $output = $("#output");
     $output.removeClass("error success");
@@ -6,10 +6,11 @@ function runScript(funBody) {
     var error = false;
 
     try{    
-        var f = Function("lineNumber", "line", funBody);
-        var txt = $input.text().split("\n");
+        var f = Function("lineNumber", "line", "totalLines", funBody);
         for (var i = 0; i < txt.length; i++) {
-                output.push(f(i, txt[i]));
+           var result = f(i, txt[i], txt.length);
+           if (result) 
+               output.push(result);
         }
     } catch (e) {
         output = [];
@@ -28,15 +29,19 @@ function runScript(funBody) {
 $(document).ready(function() {
 
     var headEditor = CodeMirror($("#editor-header").get(0), {
-        value: "/**\n* @param {number} lineNumber zero-based\n* @param {string} line\n*/\nfunction perLine(lineNumber, line) {",
+        value: "/**\n* @param {number} lineNumber zero-based\n* @param {string} line\n* @param {number} totalLines total amount of lines (would be 4 in sample)\n*/\nfunction perLine(lineNumber, line, totalLines) {",
         readOnly: "nocursor"
-
     });
     var footerEditor = CodeMirror($("#editor-footer").get(0), {
         value: "}",
         readOnly: "nocursor"
     });
     
+    var inputEditor = CodeMirror($("#input").get(0), {
+        value: "Andrey Lushnikov\nAnna Dobrolezh\nChalov Ivan\nVasilinets Sergey",
+
+        lineNumbers: true
+    });
 
     
     var bodyEditor = CodeMirror($("#editor-body").get(0), {
@@ -62,6 +67,6 @@ $(document).ready(function() {
     });
     
     $("#submit").click(function() {
-        runScript(bodyEditor.getValue());
+        runScript(bodyEditor.getValue(), inputEditor.getValue().split('\n'));
     });
 });
