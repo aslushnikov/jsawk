@@ -1,0 +1,87 @@
+body {
+    padding: 15px;
+}
+
+.editable {
+    -webkit-user-modify: read-write;        
+}
+
+#input { 
+    border: 1px black solid;
+    margin: 3px;
+    white-space: pre;
+}
+
+#editor-header {
+    margin: 3px;
+    margin-bottom: 0px;
+    border: 1px solid black;
+    border-bottom: 0px;
+}
+
+#editor-footer {
+    margin: 3px;
+    margin-top: 0px;
+    border: 1px solid black;
+    border-top: 0px;
+}
+
+.hint {
+    display: inline;
+    color: gray;
+    font-family: arial;
+    font-size: 12;
+}
+
+.shortcut {
+    font-family: monospace;
+    font-size: 11;
+    color: blue;
+}
+
+#editor-body {
+    border: 1px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    margin: 3px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 20px;
+}
+
+
+
+#output {
+    border: 1px black solid;
+    -webkit-user-modify: read-only;
+    margin: 3px;
+    white-space: pre;
+}
+
+#submit {
+    border: 1px solid black;
+    background-color: lightgray;
+    display: inline-block;
+    padding: 5px;
+    margin: 3px;
+    -webkit-transition-property:transform;
+    -webkit-transition-duration:0.1s;
+    -webkit-transition-timing-function:ease-out;    
+}
+
+#submit:hover {
+    -webkit-transform:rotate(-10deg) scale(1.5);
+}
+
+#submit:active {
+    background-color: gray;
+}
+
+.error {
+    border-color: red !important;
+}
+
+.success {
+    border-color: lightgreen !important;
+}
+
