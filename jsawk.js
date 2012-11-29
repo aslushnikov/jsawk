@@ -28,20 +28,31 @@ function runScript(funBody) {
 $(document).ready(function() {
 
     var headEditor = CodeMirror($("#editor-header").get(0), {
-        value: "/**\n* @param {number} lineNumber zero-based\n* @param {string} line\n*/\nfunction perLine(line, lineNumber) {",
-        readOnly: true
+        value: "/**\n* @param {number} lineNumber zero-based\n* @param {string} line\n*/\nfunction perLine(lineNumber, line) {",
+        readOnly: "nocursor"
+
     });
     var footerEditor = CodeMirror($("#editor-footer").get(0), {
         value: "}",
-        readOnly: true
+        readOnly: "nocursor"
     });
+    
 
     
     var bodyEditor = CodeMirror($("#editor-body").get(0), {
-        value: "return line.split(\":\").pop();"
+        value: "//swap name and last name\nvar tokens=line.split(' ');\nreturn tokens[1] + ' ' + tokens[0];"
     });
+
+    $("#editor-header").click(function(e) {
+        bodyEditor.focus();
+    });
+    $("#editor-footer").click(function(e) {
+        bodyEditor.focus();
+    });
+
+
     
-    $("#editor-body").keypress(function(e) {
+    $("body").keypress(function(e) {
         if (e.keyCode === 10 && e.ctrlKey === true) {
             $("#submit").click();
         }
