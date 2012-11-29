@@ -7,7 +7,7 @@ function runScript(funBody, txt) {
 
     window._internalMacroState = {};
     try{    
-        var stateFunction = "$=window._internalMacroState;";
+        var stateFunction = "var S=window._internalMacroState;";
         var f = Function("lineNumber", "line", "totalLines", stateFunction + funBody);
         for (var i = 0; i < txt.length; i++) {
            var result = f(i, txt[i], txt.length);
