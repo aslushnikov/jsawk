@@ -1,5 +1,5 @@
 body {
-    padding: 15px;
+    padding: 30px;
 }
 
 .editable {
@@ -26,11 +26,24 @@ body {
     border-top: 0px;
 }
 
-.hint {
+.hint-small {
     display: inline;
     color: gray;
     font-family: arial;
     font-size: 12;
+}
+
+.hint {
+    display: inline;
+    color: gray;
+    font-family: arial;
+}
+
+
+.header {
+    font-size: 25;
+    margin-top: 10px;
+
 }
 
 .shortcut {
@@ -53,9 +66,17 @@ body {
 
 #output {
     border: 1px black solid;
-    -webkit-user-modify: read-only;
+    -webkit-user-modify: read-write;
     margin: 3px;
     white-space: pre;
+
+}
+
+#copy-to-clipboard-button {
+    display: inline;
+    content: url(clipboard.png);
+    border: 1px solid black;
+    width: 30px;
 }
 
 #submit {

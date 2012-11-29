@@ -50,7 +50,10 @@ $(document).ready(function() {
         bodyEditor.focus();
     });
 
-
+    $("#output").click(function(e) {
+        $(this).focus();
+        document.execCommand("selectAll", false, null);
+    });
     
     $("body").keypress(function(e) {
         if (e.keyCode === 10 && e.ctrlKey === true) {
