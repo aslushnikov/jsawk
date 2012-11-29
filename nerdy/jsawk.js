@@ -5,8 +5,10 @@ function runScript(funBody, txt) {
     var $input = $("#input");
     var error = false;
 
+    window._internalMacroState = {};
     try{    
-        var f = Function("lineNumber", "line", "totalLines", funBody);
+        var stateFunction = "$=window._internalMacroState;";
+        var f = Function("lineNumber", "line", "totalLines", stateFunction + funBody);
         for (var i = 0; i < txt.length; i++) {
            var result = f(i, txt[i], txt.length);
            if (result) 
