@@ -5,7 +5,7 @@ function runScript(funBody, txt) {
     var $input = $("#input");
     var error = false;
 
-    window._internalMacroState = {};
+    delete window._internalMacroState;
     try{    
         var stateFunction = "var S=window._internalMacroState;";
         var f = Function("lineNumber", "line", "totalLines", stateFunction + funBody);
