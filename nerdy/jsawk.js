@@ -6,9 +6,17 @@ function runScript(funBody, txt) {
     var error = false;
 
     delete window._internalMacroState;
+    window._internalMacroState = {};
     try{    
-        var stateFunction = "var S=window._internalMacroState;";
-        var f = Function("lineNumber", "line", "totalLines", stateFunction + funBody);
+        const extendedFunBody = [
+            "var S=window._internalMacroState;", /* state object */
+            "const firstLine = lineNumber === 0;", /* firstLine extension */
+            "const lastLine = totalLines - 1 === lineNumber;", /* lastLine extension */
+            "function squeeze(s) { return s.replace(/\s+/g, ' '); }", /* squeeze function */
+            funBody
+        ];
+
+        var f = Function("lineNumber", "line", "totalLines", extendedFunBody.join("\n"));
         for (var i = 0; i < txt.length; i++) {
            var result = f(i, txt[i], txt.length);
            if (result) 
