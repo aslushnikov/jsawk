@@ -48,14 +48,13 @@ $(document).ready(function() {
     });
     
     var inputEditor = CodeMirror($("#input").get(0), {
-        value: "Andrey Lushnikov\nAnna Dobrolezh\nChalov Ivan\nVasilinets Sergey",
-
+        value: "1\n2\n3\n4\n5",
         lineNumbers: true
     });
 
     
     var bodyEditor = CodeMirror($("#editor-body").get(0), {
-        value: "//swap name and last name\nvar tokens=line.split(' ');\nreturn tokens[1] + ' ' + tokens[0];"
+        value: "/**\n * This is an example of simple aggregation.\n * This piece of code will count sum of line values\n */\n\n//|firstLine| is readOnly variable with obvious meaning\nif (firstLine)\n  //S - state object, that persists between calls\n  S.value=0;\n\n//all js functions are available for you here, including regexps\nS.value += parseInt(line);\n\n//|lastLine| is similar to |firstLine|\nif (lastLine)\n  return S.value;"
     });
 
     $("#editor-header").click(function(e) {
